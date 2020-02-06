@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        let computerPlay = () => {
+            choice = ["Rock", "Paper", "Scissors"];
+            number = Math.floor(Math.random(choice) * choice.length);
+            if (number == 0) {
+                return "Rock";
+            } else if (number == 1) {
+                return "Paper";
+            } else {
+                return "Scissors";
+            }
+        };
+
+        let playerScore = 0;
+        let computerScore = 0;
+        let drawScore = 0;
+
+        const win = () => console.log("You win.");
+        const lose = () => console.log("You lose.");
+        const draw = () => console.log("You draw.");
+        let score = () => console.log(`You: ${playerScore} | Computer: ${computerScore}`);
+        const printStars = () => console.log("******************************");
+
+        let playRound = (playerSelection, computerSelection) => {
+            var playerSelection = prompt("Rock, paper, or scissors?");
+            playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+            var computerSelection = computerPlay();
+
+            console.log("You chose " + playerSelection + ".");
+            console.log("The computer chose " + computerSelection + ".");
+
+            if (playerSelection == "Rock" && computerSelection == "Scissors") {
+                win();
+                playerScore++;
+                score();
+                printStars();
+            }
+            else if (playerSelection == "Rock" && computerSelection == "Paper") {
+                lose();
+                computerScore++;
+                score();
+                printStars();
+            }
+
+            if (playerSelection == "Paper" && computerSelection == "Rock") {
+                win();
+                playerScore++;
+                score();
+                printStars();
+            }
+            else if (playerSelection == "Paper" && computerSelection == "Scissors") {
+                lose();
+                computerScore++;
+                score();
+                printStars();
+            }
+
+            if (playerSelection == "Scissors" && computerSelection == "Paper") {
+                win();
+                playerScore++;
+                score();
+                printStars();
+            }
+            else if (playerSelection == "Scissors" && computerSelection == "Rock") {
+                lose();
+                computerScore++;
+                score();
+                printStars();
+            }
+
+            if (playerSelection == computerSelection) {
+                draw();
+                drawScore++;
+                score();
+                printStars();
+            }
+        };
+
+        let game = () => {
+            var fiveTimes = 0;
+            while (fiveTimes < 5) {
+                playRound();
+                fiveTimes++;
+            }
+            if (playerScore > computerScore) {
+                console.log("You defeated the computer.");
+            }
+            else if (playerScore < computerScore) {
+                console.log("The computer defeated you.");
+            } 
+            else {
+                console.log("You and the computer tied.");
+            }
+        };
+
+        game();
+    </script>
+</body>
+</html>
